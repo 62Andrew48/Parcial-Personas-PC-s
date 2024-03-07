@@ -26,7 +26,8 @@ public class Main {
         // TODO code application logic here
 
         int opc = 0, cantPC;
-        String nombre, apellido, cedula, direccion, marca, serial, tamaño, color, CC_buscar;
+        String nombre, apellido, cedula, direccion, marca, serial, tamaño, color;
+        String CC_buscar;
         int retorno, caracter_e;
         boolean rta, rtm;
 
