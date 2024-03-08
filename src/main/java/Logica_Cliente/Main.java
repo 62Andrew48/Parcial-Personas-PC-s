@@ -5,7 +5,6 @@
 package Logica_Cliente;
 
 import Helpers.HelperImpresion;
-import Helpers.HelperRegistrarPersona;
 import Helpers.HelperValidacion;
 import Logica_Negocio.Computador;
 import Logica_Negocio.Persona;
@@ -257,6 +256,7 @@ public class Main {
                         }
 
                         lsPCglobal = lsPC;
+                        
                         lsPC = null;
 
                     } else {

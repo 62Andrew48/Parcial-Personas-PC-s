@@ -88,7 +88,7 @@ public class HelperValidacion {
         return ce;
     }
 
-    public static int RetornarCE_Address(String dirección) {
+    public static int RetornarCE_Address(String direccion) {
         int ce = 0;
 
         ArrayList<Character> lscaracteres = new ArrayList<>();
@@ -129,12 +129,12 @@ public class HelperValidacion {
         lscaracteres.add(',');
         lscaracteres.add('@');
 
-        for (int j = 0; j < dirección.length(); j++) {
-            boolean flag = Character.isLetter(dirección.charAt(j));
+        for (int j = 0; j < direccion.length(); j++) {
+            boolean flag = Character.isLetter(direccion.charAt(j));
             if (!flag) {
                 for (int i = 0; i < lscaracteres.size(); i++) {
 
-                    if (lscaracteres.get(i).compareTo(dirección.charAt(j)) == 0) {
+                    if (lscaracteres.get(i).compareTo(direccion.charAt(j)) == 0) {
                         ce++;
                     }
                 }
@@ -144,12 +144,11 @@ public class HelperValidacion {
     }
 
     public static boolean ValidarVacio(String cadena) {
-        if (cadena.equals("")) {
-            return true;
-        } else {
-            return false;
-        }
-
+        //Elimina los espacios en blanco
+        cadena = cadena.trim();
+        
+        //Verifica si la cadena esta vacía        
+        return cadena.isEmpty();
     }
 
     public static int RetornarLetra(String nombre) {
@@ -191,18 +190,18 @@ public class HelperValidacion {
             return false;
         }
     }
-    
+
     public static String MayusYminus(String nombre) {
         String primeraLetraMayus = nombre.substring(0, 1).toUpperCase();
         String restoMinus = nombre.substring(1).toLowerCase();
-        
+
         String resultado = primeraLetraMayus + restoMinus;
         return resultado;
     }
-    
+
     public static String SerialMayus(String serial) {
         String resultado = serial.toUpperCase();
-        
+
         return resultado;
     }
 }
