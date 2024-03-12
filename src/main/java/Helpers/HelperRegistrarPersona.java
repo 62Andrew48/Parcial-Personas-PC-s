@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class HelperRegistrarPersona {
 
     public static Persona RegistrarPersona(Persona objpersona, ArrayList<Computador> lsPC) {
+
         //Crear asociacion 
         objpersona.setLsPC(lsPC);
         return objpersona;

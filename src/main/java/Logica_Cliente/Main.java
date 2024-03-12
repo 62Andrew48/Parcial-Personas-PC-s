@@ -5,7 +5,9 @@
 package Logica_Cliente;
 
 import Helpers.HelperImpresion;
+import Helpers.HelperRegistrarPersona;
 import Helpers.HelperValidacion;
+import Helpers.HelperValidacionOpcion;
 import Logica_Negocio.Computador;
 import Logica_Negocio.Persona;
 import java.util.ArrayList;
@@ -24,11 +26,12 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        int opc = 0, cantPC;
+        int opc = 0, cantPC = 0;
         String nombre, apellido, cedula, direccion, marca, serial, tamaño, color;
         String CC_buscar;
         int retorno, caracter_e;
         boolean rta, rtm;
+        int rtas, conteo;
 
         Scanner scan = new Scanner(System.in);
 
@@ -48,7 +51,7 @@ public class Main {
                     System.out.print("Digite una opción válida: ");
                     opc = scan.nextInt();
                 } catch (InputMismatchException e) {
-                    System.out.println("Error");
+                    System.out.println("Error al digitar una de las Opciones");
                 }
                 scan.nextLine();
             } while (opc <= 0);
@@ -60,96 +63,87 @@ public class Main {
                     //Nombre de la Persona
                     System.out.print("Digite el Nombre de la Persona: ");
                     nombre = scan.nextLine();
-                    rta = HelperValidacion.ValidarVacio(nombre);
+                    rtas = HelperValidacionOpcion.ValidarVacio(nombre);
 
-                    while (rta) {
+                    while (rtas > 0) {
                         System.out.print("Digite nuevamente, el Nombre de la Persona: ");
                         nombre = scan.nextLine();
-                        rta = HelperValidacion.ValidarVacio(nombre);
+                        rtas = HelperValidacionOpcion.ValidarVacio(nombre);
                     }
-                    rta = HelperValidacion.ValidarVacio(nombre);
-                    retorno = HelperValidacion.RetornarValor(nombre);
-                    caracter_e = HelperValidacion.RetornarCE(nombre);
+                    conteo = HelperValidacionOpcion.ValidarTodoLetra(nombre);
 
-                    while (retorno != 0 || rta == true || caracter_e != 0) {
+                    while (conteo != 0) {
                         System.out.print("Digite nuevamente, el Nombre de la Persona: ");
                         nombre = scan.nextLine();
-                        rta = HelperValidacion.ValidarVacio(nombre);
-                        retorno = HelperValidacion.RetornarValor(nombre);
-                        caracter_e = HelperValidacion.RetornarCE(nombre);
+                        conteo = HelperValidacionOpcion.ValidarTodoLetra(nombre);
                     }//Termina Nombre
 
                     //Apellido de la Persona
                     System.out.print("Digite el Apellido de la Persona: ");
                     apellido = scan.nextLine();
-                    rta = HelperValidacion.ValidarVacio(apellido);
+                    rtas = HelperValidacionOpcion.ValidarVacio(apellido);
 
-                    while (rta) {
+                    while (rtas > 0) {
                         System.out.print("Digite nuevamente, el Apellido de la Persona: ");
                         apellido = scan.nextLine();
-                        rta = HelperValidacion.ValidarVacio(apellido);
+                        rtas = HelperValidacionOpcion.ValidarVacio(apellido);
                     }
-                    rta = HelperValidacion.ValidarVacio(apellido);
-                    retorno = HelperValidacion.RetornarValor(apellido);
-                    caracter_e = HelperValidacion.RetornarCE(apellido);
+                    conteo = HelperValidacionOpcion.ValidarTodoLetra(apellido);
 
-                    while (retorno != 0 || rta == true || caracter_e != 0) {
+                    while (conteo != 0) {
                         System.out.print("Digite nuevamente, el Apellido de la Persona: ");
                         apellido = scan.nextLine();
-                        rta = HelperValidacion.ValidarVacio(apellido);
-                        retorno = HelperValidacion.RetornarValor(apellido);
-                        caracter_e = HelperValidacion.RetornarCE(apellido);
+                        conteo = HelperValidacionOpcion.ValidarTodoLetra(apellido);
                     }//Termina Apellido
 
                     //Cédula de la Persona
                     System.out.print("Digite la Cédula de la Persona: ");
                     cedula = scan.nextLine();
-                    rta = HelperValidacion.ValidarVacio(cedula);
+                    rtas = HelperValidacionOpcion.ValidarVacio(cedula);
 
-                    while (rta) {
+                    while (rtas < 0) {
                         System.out.print("Digite nuevamente, la Cédula de la Persona: ");
                         cedula = scan.nextLine();
-                        rta = HelperValidacion.ValidarVacio(cedula);
+                        rtas = HelperValidacionOpcion.ValidarVacio(cedula);
                     }
-                    rta = HelperValidacion.ValidarVacio(cedula);
-                    retorno = HelperValidacion.RetornarLetra(cedula);
-                    caracter_e = HelperValidacion.RetornarCE(cedula);
+                    conteo = HelperValidacionOpcion.ValidarTodoNum(cedula);
 
-                    while (retorno != 0 || rta == true || caracter_e != 0) {
+                    while (conteo != 0) {
                         System.out.print("Digite nuevamente, la Cédula de la Persona: ");
                         cedula = scan.nextLine();
-                        rta = HelperValidacion.ValidarVacio(cedula);
-                        retorno = HelperValidacion.RetornarLetra(cedula);
-                        caracter_e = HelperValidacion.RetornarCE(cedula);
+                        conteo = HelperValidacionOpcion.ValidarTodoNum(cedula);
                     }//Termina Cédula
 
                     //Dirección de la Persona
                     System.out.print("Digite la Dirección de la Persona: ");
                     direccion = scan.nextLine();
-                    rta = HelperValidacion.ValidarVacio(direccion);
+                    rtas = HelperValidacionOpcion.ValidarVacio(direccion);
 
-                    while (rta) {
+                    while (rtas < 0) {
                         System.out.print("Digite nuevamente, la Dirección de la Persona: ");
                         direccion = scan.nextLine();
-                        rta = HelperValidacion.ValidarVacio(direccion);
+                        rtas = HelperValidacionOpcion.ValidarVacio(direccion);
                     }
-                    rta = HelperValidacion.ValidarVacio(direccion);
-                    caracter_e = HelperValidacion.RetornarCE_Address(direccion);
+                    conteo = HelperValidacion.ValidarTodoAddress(direccion);
 
-                    while (retorno != 0 || rta == true || caracter_e != 0) {
+                    while (conteo != 0) {
                         System.out.print("Digite nuevamente, la Dirección de la Persona: ");
-                        direccion = scan.nextLine();
-                        rta = HelperValidacion.ValidarVacio(direccion);
-                        caracter_e = HelperValidacion.RetornarCE_Address(direccion);
+                        conteo = HelperValidacion.ValidarTodoAddress(direccion);
                     }//Termina Dirección
 
                     ArrayList<Computador> lsPC = new ArrayList<>();
 
                     //Cantidad de Computadores
-                    System.out.print("Digite la cantidad de Computadores de la Persona: ");
-                    cantPC = scan.nextInt();
+                    do {
+                        try {
+                            System.out.println("Digite la Cantidad de Computadores de la Persona");
+                            cantPC = scan.nextInt();
 
-                    scan.nextLine();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Error al digitar la Cantidad de Computadores");
+                        }
+                        scan.nextLine();
+                    } while (cantPC <= 0);
 
                     int vc = HelperValidacion.ValidarCantidadRango(cantPC);
 
@@ -162,69 +156,57 @@ public class Main {
                             //Inicia Marca del Computador
                             System.out.println("Digite la Marca del Computador" + "\t" + (i + 1));
                             marca = scan.nextLine();
-                            rta = HelperValidacion.ValidarVacio(marca);
+                            rtas = HelperValidacionOpcion.ValidarVacio(marca);
 
-                            while (rta) {
+                            while (rtas < 0) {
                                 System.out.println("Digite nuevamente, la Marca del Computador" + "\t" + (i + 1));
                                 marca = scan.nextLine();
-                                rta = HelperValidacion.ValidarVacio(marca);
+                                rtas = HelperValidacionOpcion.ValidarVacio(marca);
                             }
-                            rta = HelperValidacion.ValidarVacio(marca);
-                            retorno = HelperValidacion.RetornarValor(marca);
-                            caracter_e = HelperValidacion.RetornarCE(marca);
+                            conteo = HelperValidacionOpcion.ValidarTodoLetra(marca);
 
-                            while (retorno != 0 || rta == true || caracter_e != 0) {
+                            while (conteo != 0) {
                                 System.out.println("Digite nuevamente, la Marca del Computador" + "\t" + (i + 1));
                                 marca = scan.nextLine();
-                                rta = HelperValidacion.ValidarVacio(marca);
-                                retorno = HelperValidacion.RetornarValor(marca);
-                                caracter_e = HelperValidacion.RetornarCE(marca);
+                                conteo = HelperValidacionOpcion.ValidarTodoLetra(marca);
                             }//Fin Marca del Computador
 
                             //Inicia Serial del Computador
                             System.out.println("Digite el Serial del Computador" + "\t" + (i + 1));
                             serial = scan.nextLine();
+                            rtas = HelperValidacionOpcion.ValidarVacio(serial);
 
-                            rta = HelperValidacion.ValidarVacio(serial);
-
-                            while (rta) {
+                            while (rtas < 0) {
                                 System.out.println("Digite nuevamente, el Serial del Computador" + "\t" + (i + 1));
                                 serial = scan.nextLine();
-                                rta = HelperValidacion.ValidarVacio(serial);
+                                rtas = HelperValidacionOpcion.ValidarVacio(serial);
                             }
-                            rta = HelperValidacion.ValidarVacio(serial);
-                            caracter_e = HelperValidacion.RetornarCE(serial);
+                            conteo = HelperValidacionOpcion.ValidarTodoSerial(serial);
 
-                            while (rta == true || caracter_e != 0) {
+                            while (conteo != 0) {
                                 System.out.println("Digite nuevamente, el Serial del Computador" + "\t" + (i + 1));
                                 serial = scan.nextLine();
-                                rta = HelperValidacion.ValidarVacio(serial);
-                                caracter_e = HelperValidacion.RetornarCE(serial);
+                                conteo = HelperValidacionOpcion.ValidarTodoSerial(serial);
                             }//Termina Serial del Computador
 
                             //Inicia Tamaño del Computador
                             System.out.println("El Tamaño del Computador lo digitará en: Grande, Mediano o Pequeño");
                             System.out.println("Digite el Tamaño del Computador" + "\t" + (i + 1));
                             tamaño = scan.nextLine();
+                            rtas = HelperValidacionOpcion.ValidarVacio(tamaño);
 
-                            rta = HelperValidacion.ValidarVacio(tamaño);
-
-                            while (rta) {
+                            while (rtas < 0) {
                                 System.out.println("Digite nuevamente, el Tamaño del Computador" + "\t" + (i + 1));
                                 tamaño = scan.nextLine();
-                                rta = HelperValidacion.ValidarVacio(tamaño);
+                                rtas = HelperValidacionOpcion.ValidarVacio(tamaño);
                             }
-                            rta = HelperValidacion.ValidarVacio(tamaño);
-                            retorno = HelperValidacion.RetornarValor(tamaño);
-                            caracter_e = HelperValidacion.RetornarCE(tamaño);
+                            conteo = HelperValidacion.ValidarTodoTamaño(tamaño);
                             rtm = !HelperValidacion.ValidarTamaño(tamaño);
 
-                            while (rta == true || retorno != 0 || caracter_e != 0 || rtm == true) {
+                            while (conteo != 0 || rtm == true) {
                                 System.out.println("Digite nuevamente, el Tamaño del Computador" + "\t" + (i + 1));
                                 tamaño = scan.nextLine();
-                                rta = HelperValidacion.ValidarVacio(tamaño);
-                                retorno = HelperValidacion.RetornarValor(tamaño);
-                                caracter_e = HelperValidacion.RetornarCE(tamaño);
+                                conteo = HelperValidacion.ValidarTodoTamaño(tamaño);
                                 rtm = !HelperValidacion.ValidarTamaño(tamaño);
                             }//Termina Tamaño del Computador
 
@@ -232,23 +214,19 @@ public class Main {
                             System.out.println("Digite el Color del Computador" + "\t" + (i + 1));
                             color = scan.nextLine();
 
-                            rta = HelperValidacion.ValidarVacio(color);
+                            rtas = HelperValidacionOpcion.ValidarVacio(color);
 
-                            while (rta) {
+                            while (rtas < 0) {
                                 System.out.println("Digite nuevamente, el Color del Computador" + "\t" + (i + 1));
                                 color = scan.nextLine();
-                                rta = HelperValidacion.ValidarVacio(color);
+                                rtas = HelperValidacionOpcion.ValidarVacio(color);
                             }
-                            rta = HelperValidacion.ValidarVacio(color);
-                            retorno = HelperValidacion.RetornarValor(color);
-                            caracter_e = HelperValidacion.RetornarCE(color);
+                            conteo = HelperValidacionOpcion.ValidarTodoLetra(color);
 
-                            while (retorno != 0 || rta == true || caracter_e != 0) {
+                            while (conteo != 0) {
                                 System.out.println("Digite nuevamente, el Color del Computador" + "\t" + (i + 1));
                                 color = scan.nextLine();
-                                rta = HelperValidacion.ValidarVacio(color);
-                                retorno = HelperValidacion.RetornarValor(color);
-                                caracter_e = HelperValidacion.RetornarCE(color);
+                                conteo = HelperValidacionOpcion.ValidarTodoLetra(color);
                             }//Termina Color del Computador
 
                             Computador objPC = new Computador(marca, serial, tamaño, color);
@@ -256,11 +234,10 @@ public class Main {
                         }
 
                         lsPCglobal = lsPC;
-                        
                         lsPC = null;
 
                     } else {
-                        System.out.println("Cantidad Inválida");
+                        System.out.println("Cantidad Inválida de Computadores");
                         break;
                     }//Fin Cantidad de Computadores
 
@@ -269,6 +246,7 @@ public class Main {
 
                     //Crear Asociación 
                     objpersona.setLsPC(lsPCglobal);
+                    Persona objenviado = HelperRegistrarPersona.RegistrarPersona(objpersona, lsPCglobal);
                     lspersonas.add(objpersona);
                     break;
 

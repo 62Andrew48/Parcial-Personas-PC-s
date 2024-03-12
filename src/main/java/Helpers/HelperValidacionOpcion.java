@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author ANDRES GARCES
  */
-public class HelperValidacion {
+public class HelperValidacionOpcion {
 
     public static int RetornarValor(String nombre) {
         int numero = 0;
@@ -30,7 +30,7 @@ public class HelperValidacion {
         return numero;
     }
 
-    public static int RetornarCE(String nombre) {
+    public static int RetornarCEV2(String nombre) {
         int ce = 0;
 
         ArrayList<Character> lscaracteres = new ArrayList<>();
@@ -90,69 +90,13 @@ public class HelperValidacion {
         return ce;
     }
 
-    public static int RetornarCE_Address(String direccion) {
-        int ce = 0;
-
-        ArrayList<Character> lscaracteres = new ArrayList<>();
-
-        lscaracteres.add('~');
-        lscaracteres.add('/');
-        lscaracteres.add(';');
-        lscaracteres.add(':');
-        lscaracteres.add('"');
-        lscaracteres.add('!');
-        lscaracteres.add('º');
-        lscaracteres.add('¬');
-        lscaracteres.add('|');
-        lscaracteres.add('?');
-        lscaracteres.add('¿');
-        lscaracteres.add('&');
-        lscaracteres.add('%');
-        lscaracteres.add('$');
-        lscaracteres.add('_');
-        lscaracteres.add('*');
-        lscaracteres.add('<');
-        lscaracteres.add('>');
-        lscaracteres.add('€');
-        lscaracteres.add('Ç');
-        lscaracteres.add('+');
-        lscaracteres.add('(');
-        lscaracteres.add(')');
-        lscaracteres.add('»');
-        lscaracteres.add('¥');
-        lscaracteres.add('«');
-        lscaracteres.add('¶');
-        lscaracteres.add('[');
-        lscaracteres.add(']');
-        lscaracteres.add('{');
-        lscaracteres.add('}');
-        lscaracteres.add('÷');
-        lscaracteres.add('=');
-        lscaracteres.add(',');
-        lscaracteres.add('@');
-        lscaracteres.add('´');
-
-        for (int j = 0; j < direccion.length(); j++) {
-            boolean flag = Character.isLetter(direccion.charAt(j));
-            if (!flag) {
-                for (int i = 0; i < lscaracteres.size(); i++) {
-
-                    if (lscaracteres.get(i).compareTo(direccion.charAt(j)) == 0) {
-                        ce++;
-                    }
-
-                }
-            }
-        }
-        return ce;
-    }
-
     public static int ValidarVacio(String cadena) {
         if (cadena.equals("")) {
             return 1;
         } else {
             return 0;
         }
+
     }
 
     public static int RetornarLetra(String nombre) {
@@ -181,42 +125,18 @@ public class HelperValidacion {
         }
     }
 
-    public static boolean ValidarTamaño(String medida) {
-        String primeraLetraMayus = medida.substring(0, 1).toUpperCase();
-        String restoMinus = medida.substring(1).toLowerCase();
-
-        String resultado = primeraLetraMayus + restoMinus;
-
-        if (resultado.equals("Grande") || resultado.equals("Mediano")
-                || resultado.equals("Pequeño")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public static String MayusYminus(String nombre) {
-        String primeraLetraMayus = nombre.substring(0, 1).toUpperCase();
-        String restoMinus = nombre.substring(1).toLowerCase();
-
-        String resultado = primeraLetraMayus + restoMinus;
-        return resultado;
-    }
-
-    public static String SerialMayus(String serial) {
-        String resultado = serial.toUpperCase();
-
-        return resultado;
-    }
-
-    public static int ValidarTodoAddress(String cadena) {
-        int conteo = ValidarVacio(cadena) + RetornarLetra(cadena)
-                + RetornarLetra(cadena) + RetornarCE_Address(cadena);
+    public static int ValidarTodoNum(String cadena) {
+        int conteo = ValidarVacio(cadena) + RetornarValor(cadena) + RetornarCEV2(cadena);
         return conteo;
     }
-    
-    public static int ValidarTodoTamaño(String cadena) {
-        int conteo = ValidarVacio(cadena) + RetornarLetra(cadena) + RetornarCE(cadena);
+
+    public static int ValidarTodoLetra(String cadena) {
+        int conteo = ValidarVacio(cadena) + RetornarLetra(cadena) + RetornarCEV2(cadena);
+        return conteo;
+    }
+
+    public static int ValidarTodoSerial(String cadena) {
+        int conteo = ValidarVacio(cadena) + RetornarCEV2(cadena);
         return conteo;
     }
 }
