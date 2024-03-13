@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class HelperValidacion {
 
-    public static int RetornarValor(String nombre) {
+    public static int RetornarNum(String nombre) {
         int numero = 0;
         int letra = 0;
 
@@ -154,6 +154,14 @@ public class HelperValidacion {
             return 0;
         }
     }
+    
+    public static boolean ValidarVacioTrim(String cadena) {
+        //Elimina los espacios en blanco
+        cadena = cadena.trim();
+        
+        //Verifica si la cadena esta vacía        
+        return cadena.isEmpty();
+    }
 
     public static int RetornarLetra(String nombre) {
         int numero = 0;
@@ -208,15 +216,9 @@ public class HelperValidacion {
 
         return resultado;
     }
-
-    public static int ValidarTodoAddress(String cadena) {
-        int conteo = ValidarVacio(cadena) + RetornarLetra(cadena)
-                + RetornarLetra(cadena) + RetornarCE_Address(cadena);
-        return conteo;
-    }
     
     public static int ValidarTodoTamaño(String cadena) {
-        int conteo = ValidarVacio(cadena) + RetornarLetra(cadena) + RetornarCE(cadena);
+        int conteo = ValidarVacio(cadena) + RetornarNum(cadena) + RetornarCE(cadena);
         return conteo;
     }
 }

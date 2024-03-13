@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class HelperValidacionOpcion {
 
-    public static int RetornarValor(String nombre) {
+    public static int RetornarNum(String nombre) {
         int numero = 0;
         int letra = 0;
 
@@ -125,12 +125,12 @@ public class HelperValidacionOpcion {
         }
     }
 
-    public static int ValidarTodoNum(String cadena) {
-        int conteo = ValidarVacio(cadena) + RetornarValor(cadena) + RetornarCEV2(cadena);
+    public static int ValidarTodoLetra(String cadena) {
+        int conteo = ValidarVacio(cadena) + RetornarNum(cadena) + RetornarCEV2(cadena);
         return conteo;
     }
 
-    public static int ValidarTodoLetra(String cadena) {
+    public static int ValidarTodoNum(String cadena) {
         int conteo = ValidarVacio(cadena) + RetornarLetra(cadena) + RetornarCEV2(cadena);
         return conteo;
     }

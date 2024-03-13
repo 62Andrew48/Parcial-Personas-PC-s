@@ -29,8 +29,7 @@ public class Main {
         int opc = 0, cantPC = 0;
         String nombre, apellido, cedula, direccion, marca, serial, tamaño, color;
         String CC_buscar;
-        int retorno, caracter_e;
-        boolean rta, rtm;
+        boolean rtm, trim;
         int rtas, conteo;
 
         Scanner scan = new Scanner(System.in);
@@ -117,18 +116,18 @@ public class Main {
                     //Dirección de la Persona
                     System.out.print("Digite la Dirección de la Persona: ");
                     direccion = scan.nextLine();
-                    rtas = HelperValidacionOpcion.ValidarVacio(direccion);
+                    trim = HelperValidacion.ValidarVacioTrim(direccion);
 
-                    while (rtas < 0) {
+                    while (trim) {
                         System.out.print("Digite nuevamente, la Dirección de la Persona: ");
                         direccion = scan.nextLine();
-                        rtas = HelperValidacionOpcion.ValidarVacio(direccion);
+                        trim = HelperValidacion.ValidarVacioTrim(direccion);
                     }
-                    conteo = HelperValidacion.ValidarTodoAddress(direccion);
+                    conteo = HelperValidacion.RetornarCE_Address(direccion);
 
                     while (conteo != 0) {
                         System.out.print("Digite nuevamente, la Dirección de la Persona: ");
-                        conteo = HelperValidacion.ValidarTodoAddress(direccion);
+                        conteo = HelperValidacion.RetornarCE_Address(direccion);
                     }//Termina Dirección
 
                     ArrayList<Computador> lsPC = new ArrayList<>();
